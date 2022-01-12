@@ -1,0 +1,47 @@
+﻿@model BackendTest1.Models.RegisterModel1
+@{
+    ViewData["Title"] = "RobotCreate";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h2>Create Robot: @ViewBag.CurrMoney $ left</h2>
+    </div>
+    
+</div>
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-8 offset-2 mb-4">
+                    <div class="form-group">
+                        <label for="robotName">Name</label>
+                        <input class="form-control" id="robotName" placeholder="Enter robot name" asp-for="robotname">
+                    </div>
+                    <label>Robot body type</label>
+
+                    @{
+                        for (int i = 0; i < Model.modifications.Count; i++)
+                        {
+                            if (Model.modifications[i].type == 1)
+                            {
+                                <div class="form-check">
+                                    <input  asp-for="bodycurind" value="@i" type="radio"  id="bodyType_@i" checked>
+                                    <label class="form-check-label" for="bodyType1">
+                                        @Model.modifications[i].name @Model.modifications[i].cost
+                                    </label>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 offset-2"></div>
+                <div class="col-4 col-md-2"> </div>
+                <div class="col-2"><button type="submit" class="btn btn-primary">Next</button></div>
+            </div>
+        </div>
+    </div>
+</form>

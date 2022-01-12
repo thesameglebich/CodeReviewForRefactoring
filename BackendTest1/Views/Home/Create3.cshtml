@@ -1,0 +1,81 @@
+﻿@model BackendTest1.Models.Register3
+@{
+    ViewData["Title"] = "RobotCreate";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h2>Create Robot: Body mods (@ViewBag.Minus $ left)</h2>
+    </div>
+</div>
+<form asp-action="Create3">
+    <div class="row">
+        <input type="hidden" asp-for="robotname" />
+        <input type="hidden" asp-for="bodycurind" />
+        <input type="hidden" asp-for="headind" />
+        <div class="col-12">
+            <div class="row">
+                <div class="col-8 offset-2 mb-2">
+                    <label class="mt-2">Robot body mods</label>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Mod 1</label>
+                                
+                            </div>
+                            <div class="col-md-9">
+                                <select class="form-control" asp-for="modbodyind1">
+                                    @{//<option>Random Mod</option>
+                                    }
+                                    @{
+                                        for (int i = 0; i < Model.modifications.Count; i++)
+                                        {
+                                            if (Model.modifications[i].type == 4)
+                                            {
+                                                <option value="@i">@Model.modifications[i].name (@Model.modifications[i].cost $)</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Mod 2</label>
+                                
+                            </div>
+                            <div class="col-md-9">
+                                <select class="form-control">
+                                    @{//<option>Random Mod</option>
+                                    }
+                                    @{
+                                        for (int i = 0; i < Model.modifications.Count; i++)
+                                        {
+                                            if (Model.modifications[i].type == 4)
+                                            {
+                                                <option value="@i" >@Model.modifications[i].name (@Model.modifications[i].cost $)</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success">Add</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 offset-2"><button type="submit" name="action" value="back" class="btn btn-primary">Back</button></div>
+                <div class="col-4 col-md-2"> </div>
+                <div class="col-2"><button type="submit" name="action" value="submit" class="btn btn-primary">Next</button></div>
+            </div>
+        </div>
+    </div>
+</form>
+
